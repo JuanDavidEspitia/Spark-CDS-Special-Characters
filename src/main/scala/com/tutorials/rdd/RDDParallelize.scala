@@ -1,4 +1,4 @@
-package com.tutorials
+package com.tutorials.rdd
 
 import org.apache.log4j.{Level, Logger}
 import org.apache.spark.rdd.RDD
@@ -54,10 +54,19 @@ object RDDParallelize {
     val rdd4:RDD[Range] = sc.parallelize(List(1 to 1000))
     println("Number of Partitions of RDD4: "+rdd4.getNumPartitions)
 
+    /**
+     * Creamos el RDD5 apartir del RDD4 con el rango de numeros y lo
+     * Particionamos en 5
+     * */
     println(("Create to RDD5 with numPartition = 5"))
     val rdd5 = rdd4.repartition(5)
     println("Number of Partitions of RDD5 : "+rdd5.getNumPartitions)
 
+    /**
+     * Creamos el RDD6 apartir del RDD5
+     * y lo convertimos en un array
+     * */
+    println("RDD6 convert to array, delimited by coma")
     val rdd6:Array[Range] = rdd5.collect()
     println(rdd6.mkString(","))
 
@@ -67,7 +76,6 @@ object RDDParallelize {
       println("For each partition")
       f.foreach(f1=>println(f1))
     })
-    
 
   }
 
