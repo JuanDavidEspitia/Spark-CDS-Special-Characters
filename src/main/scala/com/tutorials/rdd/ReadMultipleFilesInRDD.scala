@@ -51,7 +51,33 @@ object ReadMultipleFilesInRDD
 
     /**
      * Leer multiples archivos de texto en un solo RDD
+     * Para este ejemplo leemos el archivo de textfile01 y textfile02
      * */
+      println("Lectura de varios archivos de texto separados por ( , ) en la carga")
+    val rdd3 = spark.sparkContext.textFile("input/textfiles_rdd/text01.txt,input/textfiles_rdd/text02.txt")
+    rdd3.foreach(f=>{
+      println(f)
+    })
+
+    /**
+     * Leer todos los archivos de texto que coinciden con un patrón para un solo RDD
+     * */
+    println("Lectura de todos los archivos de texto por un patron")
+    val rdd2 = spark.sparkContext.textFile("input/textfiles_rdd/text*.txt")
+    rdd2.foreach(f=>{
+      println(f)
+    })
+
+    /**
+     * Leer varios archivos desde multiples directorios
+     * */
+      println("Leer varios archivos desde multiples directorios en un solo RDD")
+    val rdd6 = spark.sparkContext
+      .textFile("input/directory_textfiles_rdd/dir1/*,input/directory_textfiles_rdd/dir2/*,input/directory_textfiles_rdd/dir3/*")
+    rdd6.foreach(f=>{
+      println(f)
+    })
+
 
 
 
