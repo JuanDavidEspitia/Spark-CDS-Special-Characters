@@ -71,11 +71,24 @@ object ReadMultipleFilesInRDD
     /**
      * Leer varios archivos desde multiples directorios
      * */
-      println("Leer varios archivos desde multiples directorios en un solo RDD")
+      println("Leer varios archivos desde multiples directorios en un solo RDD, separados por coma")
     val rdd6 = spark.sparkContext
       .textFile("input/directory_textfiles_rdd/dir1/*,input/directory_textfiles_rdd/dir2/*,input/directory_textfiles_rdd/dir3/*")
     rdd6.foreach(f=>{
       println(f)
+    })
+
+    /**
+     * Lectura de multiples CSV en un solo RDD, CSV delimitados por Coma
+     * */
+    val rdd5 = spark.sparkContext.textFile("input/textfiles_rdd/*")
+    val rdd8 = rdd5.map(f=>{
+      f.split(",")
+    })
+    // Imprimimos el contenido del RDD
+    println("Imprimimos el contenido del RDD, con los CSV")
+    rdd8.foreach(f => {
+      println("Col1: "+f(0)+",Col2: "+f(1))
     })
 
 
