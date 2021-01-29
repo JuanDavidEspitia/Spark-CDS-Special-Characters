@@ -78,6 +78,14 @@ object ReadMultipleCSVFiles
       println(f)
     })
 
+    /**
+     * Leer los archivos CSV basados en un patron
+     * */
+    println("Leer los archivos CSV basados en un patron")
+    val rdd9 = spark.sparkContext.textFile("input/csv_files_rdd/text*.csv")
+    rdd9.foreach(f=>{
+      println(f)
+    })
 
 
 
