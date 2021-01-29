@@ -55,10 +55,27 @@ object ReadMultipleCSVFiles
      * */
     println("")
     println("Omitimos el encabezado de los archivos CSV")
-
     val rddSkipHeader = rdd.mapPartitionsWithIndex { (idx, iter) => if (idx == 0) iter.drop(1) else iter }
     rddSkipHeader.collect().foreach(f=>{
       println("Col1: "+f(0)+",Col2: "+f(1))
+    })
+
+    /**
+     * Leer multiples archivos CSV, de diferentes rutas en un solo RDD
+     * */
+    val rdd4 = spark.sparkContext.textFile("input/csv_files_rdd/text01.csv,input/csv_files_rdd/text02.csv")
+    println("Leer multiples archivos CSV, de diferentes rutas en un solo RDD")
+    rdd4.foreach(f=>{
+      println(f)
+    })
+
+    /**
+     * Leer todos los archivos CSV de un directorio en un solo CSV
+     * */
+    val rdd3 = spark.sparkContext.textFile("input/csv_files_rdd/*")
+    println("Leer todos los archivos CSV de un directorio en un solo CSV")
+    rdd3.foreach(f=>{
+      println(f)
     })
 
 
