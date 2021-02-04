@@ -4,7 +4,7 @@
 		module="spark-cds-special-characters_2.11"
 		revision="0.1"
 		status="integration"
-		publication="20210129082326"
+		publication="20210204092433"
 	>
 		<description>
 		Spark-CDS-Special-Characters
