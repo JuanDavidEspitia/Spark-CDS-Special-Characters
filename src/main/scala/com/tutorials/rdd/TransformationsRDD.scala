@@ -90,6 +90,7 @@ object TransformationsRDD
      * y su recuento como par clave-valor en la consola.
      *
      * */
+    println("********************************   sortByKey()   ***************************************")
     println("Trasnformacion sortByKey()")
     println("Cambiamos el orden de las columnas")
     val rdd6 = rddReduceByKey.map(a=>(a._2,a._1)).sortByKey()
