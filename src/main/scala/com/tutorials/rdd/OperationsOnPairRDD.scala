@@ -53,6 +53,31 @@ object OperationsOnPairRDD
     val wordCount = pairRDD.reduceByKey((a,b)=>a+b)
     wordCount.foreach(println)
 
+    def param1= (accu:Int,v:Int) => accu + v
+    def param2= (accu1:Int,accu2:Int) => accu1 + accu2
+    println("Aggregate by Key ==> wordcount")
+    val wordCount2 = pairRDD.aggregateByKey(0)(param1,param2)
+    wordCount2.foreach(println)
+
+    /**
+     * keys – Return RDD[K] with all keys in an dataset
+     * */
+    println("Keys ==>")
+    wordCount2.keys.foreach(println)
+
+    /**
+     * values – return RDD[V] with all values in an dataset
+     *
+     * */
+    println("Keys ==>")
+    wordCount2.keys.foreach(println)
+
+    /**
+     * count – This is an action function and returns a count of a dataset
+     * */
+    println("Count :"+wordCount2.count())
+
+
 
 
   }
